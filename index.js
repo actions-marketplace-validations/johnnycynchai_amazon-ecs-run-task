@@ -245,7 +245,7 @@ async function waitForTasksStopped(ecs, clusterName, taskArns, waitForMinutes) {
 
   const maxAttempts = (waitForMinutes * 60) / WAIT_DEFAULT_DELAY_SEC;
 
-  core.debug('Waiting for tasks to stop');
+  core.info('Waiting for task to stop');
 
   const waitTaskResponse = await ecs
     .waitFor('tasksStopped', {
@@ -258,7 +258,7 @@ async function waitForTasksStopped(ecs, clusterName, taskArns, waitForMinutes) {
     })
     .promise();
 
-  core.debug(`Run task response ${JSON.stringify(waitTaskResponse)}`);
+  core.info(`Run task response ${JSON.stringify(waitTaskResponse)}`);
 
   core.info(
     `All tasks have stopped. Watch progress in the Amazon ECS console: https://console.aws.amazon.com/ecs/home?region=${aws.config.region}#/clusters/${clusterName}/tasks`

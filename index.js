@@ -211,13 +211,13 @@ async function run() {
       runTaskRequest.overrides.executionRoleArn = taskExecutionRoleArn;
     }
 
-    core.debug(
+    core.info(
       `Running task with ${JSON.stringify(runTaskRequest)}`
     );
 
     const runTaskResponse = await ecs.runTask(runTaskRequest).promise();
 
-    core.debug(`Run task response ${JSON.stringify(runTaskResponse)}`);
+    core.info(`Run task response ${JSON.stringify(runTaskResponse)}`);
 
     if (runTaskResponse.failures && runTaskResponse.failures.length > 0) {
       const failure = runTaskResponse.failures[0];
